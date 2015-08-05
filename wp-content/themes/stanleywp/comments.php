@@ -23,7 +23,7 @@
             <i class="icon-comments-alt"></i>
             <span>
                 <?php
-                    printf( _nx( 'One Comment', '%1$s Comments', '', 'comments title', 'wpex' ),
+                    printf( _nx( 'Un Commentaire', '%1$s Commentaires', '', 'comments title', 'wpex' ),
                         number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' );
                 ?>
             </span>
@@ -45,14 +45,14 @@
         <?php endif; // Check for comment navigation ?>
 
         <?php if ( ! comments_open() && get_comments_number() ) : ?>
-        <p class="no-comments"><?php _e( 'Comments are closed.' , 'wpex' ); ?></p>
+        <p class="no-comments"><?php _e( 'Les commentaires sont desactivés.' , 'wpex' ); ?></p>
         <?php endif; ?>
 
     <?php endif; // have_comments() ?>
 
     <?php comment_form(
         $fields =  array(
-            'title_reply' => '<span>'. __( 'Leave a Reply', 'wpex') .'</span>'
+            'title_reply' => '<span>'. __( 'Laisser un commentaire', 'wpex') .'</span>'
         ) ); ?>
 
 </div><!-- #comments -->

@@ -168,7 +168,7 @@ function my_more_link( $more_link, $more_link_text ) {
     
     $read_more_text = bi_get_data('read_more_text', '' );
             
-    return str_replace( $more_link_text, '<p><a href="' . get_permalink() . '" class="readmore">'.$read_more_text.' </a> </p>', $more_link );
+    return str_replace( $more_link_text, '<p><a href="' . get_permalink() . '" class="readmore">Lire la suite </a> </p>', $more_link );
 }
 
 add_filter( 'the_content_more_link', 'my_more_link', 10, 2 );
@@ -367,4 +367,5 @@ function gents_breadcrumb_lists() {
     }
 	
     add_action('widgets_init', 'gents_widgets_init');
+
 ?>

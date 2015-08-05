@@ -30,7 +30,8 @@
   query_posts( array( 'post_type' => 'post', 'paged' => $paged ) );
   ?>   
 
-
+  <div class="container" >
+     <div class="col-lg-9" >
   <?php if (have_posts()) : ?>
 
   <?php
@@ -48,20 +49,22 @@
           $color_id = 'white'; }
           ?>
 
-          <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+          <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> >
 
            <div id="<?php echo $color_id ?>">
-            <div class="container">
+            <div>
               <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
+                <div class="col-lg-9 col-lg-offset-2">
 
                   <section class="post-meta">          
-                      <p class="author-avatar"><?php echo get_avatar( get_the_author_meta( 'ID' ), 50 ); ?><ba><?php the_author_meta( 'display_name' ); ?></ba></p>
+                    
                          <p><bd><time class="post-date"><?php the_date(); ?></time></bd></p>                
                   </section><!-- end of .post-meta -->
 
                   <header>
-                    <h4 class="post-title"><?php the_title(); ?></h4>
+                    <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
+                      <h4 class="post-title"><?php the_title(); ?></h4>
+                    </a>
                   </header>
                   <section class="post-entry">
                     <?php if ( has_post_thumbnail()) : ?>
@@ -86,7 +89,15 @@
                             ); ?>
 
                           </section><!-- end of .post-entry -->  
-
+                        <section class="post-meta">          
+                            <p class="author-avatar"><?php echo get_avatar( get_the_author_meta( 'ID' ), 50 ); ?><ba><?php the_author_meta( 'display_name' ); ?></ba></p>
+                               <!-- <p><bd><time class="post-date"><?php the_date(); ?></time></bd></p>  --> 
+                            
+                              <span>
+                                <?php comments_popup_link(__('Aucun Commentaire <i class="icon-arrow-down"></i>', 'gents'), __('1 Commentaire <i class="icon-arrow-down"></i>', 'gents'), __('% Commentaires <i class="icon-arrow-down"></i>', 'gents')); ?>
+                              </span>
+                            
+                        </section><!-- end of .post-meta -->
                         </div>
 
                       </div><!-- /row -->
@@ -101,15 +112,15 @@
               <?php endwhile; ?> 
 
               <?php if (  $wp_query->max_num_pages > 1 ) : ?>
-              <div class="container">
+              <div class="">
 
               <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
+                <div class="col-lg-9 col-lg-offset-2">
                   <hr>
               <nav>
                 <ul class="pager">
-                 <li class="previous"><?php next_posts_link( __( '&#8249; Older posts', 'gents' ) ); ?></li>
-                 <li class="next"><?php previous_posts_link( __( 'Newer posts &#8250;', 'gents' ) ); ?></li>
+                 <li class="next"><?php next_posts_link( __( ' Anciens articles &#8250;', 'gents' ) ); ?></li>
+                 <li class="previous"><?php previous_posts_link( __( '&#8249; Nouveaux articles', 'gents' ) ); ?></li>
                </ul><!-- end of .navigation -->
              </nav>
            </div>
@@ -120,19 +131,16 @@
          <?php else : ?>
 
          <article id="post-not-found" class="hentry clearfix">
-          <div class="container">
+          <div class="">
               <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
+                <div class="col-lg-9 col-lg-offset-2">
           <header>
-           <h1 class="title-404"><?php _e('404 &#8212; Fancy meeting you here!', 'gents'); ?></h1>
-         </header>
-         <section>
-           <p><?php _e('Don&#39;t panic, we&#39;ll get through this together. Let&#39;s explore our options here.', 'gents'); ?></p>
-         </section>
-         <footer>
-           <h6><?php _e( 'You can return', 'gents' ); ?> <a href="<?php echo home_url(); ?>/" title="<?php esc_attr_e( 'Home', 'gents' ); ?>"><?php _e( '&#9166; Home', 'gents' ); ?></a> <?php _e( 'or search for the page you were looking for', 'gents' ); ?></h6>
-           <?php get_search_form(); ?>
-         </footer>
+           <h1 class="title-404">Désole aucun article ne correspond à votre recherche</h1>
+           </header>
+           <footer>
+               <h7>Vous pouvez retourner à <a href="<?php echo home_url(); ?>/" title="Acceuil">&#9166; l'Acceuil</a> ou lancer une autre recherche : </h6>
+               <?php get_search_form(); ?>
+           </footer>
          </div>
          </div>
        </div>
@@ -142,5 +150,10 @@
 
 
    </div> <!-- /col-lg-8 -->
-
+   <div class="col-lg-3" style="margin-top:25px;">
+      <?php dynamic_sidebar('footer-left'); ?>
+  </div>
+ </div> <!-- /col-lg-9 -->
+  
+</div> <!-- /row blog -->
    <?php get_footer(); ?>

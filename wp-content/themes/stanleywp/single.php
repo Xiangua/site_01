@@ -23,17 +23,11 @@
 
   <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-    <div id="white">
+    <div id="white" style="padding-bottom: 0px;">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2">
-
-           <section class="post-meta">
-            <p class="author-avatar"><?php echo get_avatar( get_the_author_meta( 'ID' ), 50 ); ?><ba><?php the_author_meta( 'display_name' ); ?></ba></p>
-            <p><bd><time class="post-date"><?php the_date(); ?></time></bd></p>
-          </section><!-- end of .post-meta -->
-
-          <h4><?php the_title(); ?></h4>
+          <h4 class="post-title"><?php the_title(); ?></h4>
 
 
           <?php if ( has_post_thumbnail() ) : ?>
@@ -43,6 +37,7 @@
 
         <section class="post-entry">
           <?php the_content(); ?>
+
 
           <?php if ( get_the_author_meta( 'description' ) != '' ) : ?>
 
@@ -67,7 +62,10 @@
 
 
                           </section><!-- end of .post-entry -->
-
+                          <section class="post-meta">
+                              <p><bd><time class="post-date"><?php the_date(); ?></time></bd></p>
+                              <p class="author-avatar"><?php echo get_avatar( get_the_author_meta( 'ID' ), 50 ); ?><ba><?php the_author_meta( 'display_name' ); ?></ba></p>
+                          </section><!-- end of .post-meta -->
                           <footer class="article-footer">
                             <?php if ( bi_get_data( 'enable_disable_tags', '1' ) == '1' ) {?>
                             <div class="post-data">
@@ -75,7 +73,7 @@
                             </div><!-- end of .post-data -->
                             <?php } ?>
 
-                            <div class="post-edit"><?php edit_post_link( __( 'Edit', 'gents' ) ); ?></div>
+                            <div class="post-edit"><?php edit_post_link( __( 'Editer', 'gents' ) ); ?></div>
                           </footer>
 
 
@@ -83,7 +81,19 @@
                       </div>
                     </div>
                   </div>
-                </article><!-- end of #post-<?php the_ID(); ?> -->
+
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-8 col-lg-offset-2">
+
+                    <ul class="pager">
+                     <li class="previous"><?php next_post( '%','&#8249; Nouvel article : ','yes' ); ?></li>
+                     <li class="next"><?php $next_post = get_previous_post(); previous_post( '% ','Ancien article : '.get_the_title( $next_post->ID ).' &#8250;','no' ); ?></li>
+                   </ul><!-- end of .navigation -->
+
+                 </div>
+               </div>
+             </div>
 
                 <div class="container">
                   <div class="row">
@@ -97,21 +107,7 @@
 
               <?php endwhile; ?>
 
-              <?php if (  $wp_query->max_num_pages > 1 ) : ?>
-
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-8 col-lg-offset-2">
-
-                    <nav class="navigation">
-                     <div class="previous"><?php next_posts_link( __( '&#8249; Older posts', 'gents' ) ); ?></div>
-                     <div class="next"><?php previous_posts_link( __( 'Newer posts &#8250;', 'gents' ) ); ?></div>
-                   </nav><!-- end of .navigation -->
-
-                 </div>
-               </div>
-             </div>
-           <?php endif; ?>
+              
 
          <?php else : ?>
 

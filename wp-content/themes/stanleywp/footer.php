@@ -24,7 +24,7 @@
 <footer id="footer">
 <div class="container">
       <div class="row">
-        <div class="col-lg-4">
+        <!-- <div class="col-lg-4">
           <?php dynamic_sidebar('footer-left'); ?>
         </div>
         <div class="col-lg-4">
@@ -32,7 +32,7 @@
         </div>
         <div class="col-lg-4">
           <?php dynamic_sidebar('footer-right'); ?>
-        </div>
+        </div> -->
       
       </div><!-- /row -->
     </div><!-- /container -->
